@@ -192,7 +192,7 @@ public class KeyguardIndicationController {
     private boolean mEnableBatteryDefender;
     private boolean mIncompatibleCharger;
     private int mChargingSpeed;
-    private float mChargingWattage;
+    private double mChargingWattage;
     private int mBatteryLevel;
     private boolean mBatteryPresent = true;
     private long mChargingTimeRemaining;
@@ -983,6 +983,10 @@ public class KeyguardIndicationController {
                 batteryInfo = String.format("%.1f" , (mChargingCurrent / 1000 / 1000)) + "A";
             } else if (mChargingCurrent > 0) {
                 batteryInfo = String.format("%.0f" , (mChargingCurrent / 1000)) + "mA";
+            }
+            if (mChargingWattage > 0) {
+                batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
+                        String.format("%.1f" , (mChargingWattage / 1000 / 1000)) + "W";
             }
             if (mChargingWattage > 0) {
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
