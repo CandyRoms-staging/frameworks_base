@@ -16935,6 +16935,12 @@ public final class Settings {
         public static final String HYBRID_SYSUI_BATTERY_WARNING_FLAGS = "hybrid_sysui_battery_warning_flags";
 
         /**
+         * Package designated as global VPN provider.
+         * @hide
+         */
+        public static final String GLOBAL_VPN_APP = "global_vpn_app";
+
+        /**
          * Global settings that shouldn't be persisted.
          *
          * @hide
