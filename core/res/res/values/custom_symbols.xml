@@ -108,6 +108,6 @@
     <java-symbol type="string" name="url_copy_failed" />
 
     <!-- Build properties from a GMS certified device -->
-    <java-symbol type="string" name="config_stockFingerprint" />
+    <java-symbol type="array" name="config_stockFingerprint" />
 
 </resources>
