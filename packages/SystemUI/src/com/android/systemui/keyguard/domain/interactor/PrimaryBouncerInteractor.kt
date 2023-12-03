@@ -77,6 +77,8 @@ constructor(
     private val featureFlags: FeatureFlags,
     @Application private val applicationScope: CoroutineScope,
 ) {
+    private val passiveAuthBouncerDelay = context.resources.getInteger(
+            R.integer.primary_bouncer_passive_auth_delay).toLong()
     /** Runnable to show the primary bouncer. */
     val showRunnable = Runnable {
         repository.setPrimaryShow(true)
@@ -167,7 +169,12 @@ constructor(
         }
 
         repository.setPrimaryShowingSoon(true)
-        DejankUtils.postAfterTraversal(showRunnable)
+        if (usePrimaryBouncerPassiveAuthDelay()) {
+            Log.d(TAG, "delay bouncer, passive auth may succeed")
+            mainHandler.postDelayed(showRunnable, passiveAuthBouncerDelay)
+        } else {
+            DejankUtils.postAfterTraversal(showRunnable)
+        }
         keyguardStateController.notifyPrimaryBouncerShowing(true)
         primaryBouncerCallbackInteractor.dispatchStartingToShow()
         Trace.endSection()
