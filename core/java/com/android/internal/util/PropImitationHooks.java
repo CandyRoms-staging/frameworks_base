@@ -29,17 +29,12 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.util.Set;
 
 public class PropImitationHooks {
 
     private static final String TAG = "PropImitationHooks";
     private static final boolean DEBUG = false;
-
-    private static final String[] sCertifiedProps =
-            Resources.getSystem().getStringArray(R.array.config_certifiedBuildProperties);
 
     private static final String sCertifiedFp =
             Resources.getSystem().getString(R.string.config_certifiedFingerprint);
@@ -150,36 +145,13 @@ public class PropImitationHooks {
         }
     }
 
-    private static String getBuildID(String fingerprint) {
-        Pattern pattern = Pattern.compile("([A-Za-z0-9]+\\.\\d+\\.\\d+\\.\\w+)");
-        Matcher matcher = pattern.matcher(fingerprint);
-
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return "";
-    }
-
-    private static String getDeviceName(String fingerprint) {
-        String[] parts = fingerprint.split("/");
-        if (parts.length >= 2) {
-            return parts[1];
-        }
-        return "";
-    }
-
     private static void spoofBuildGms() {
-       if (sCertifiedProps == null || sCertifiedProps.length == 0) return;
         // Alter build parameters to avoid hardware attestation enforcement
-        setPropValue("BRAND", sCertifiedProps[0]);
-        setPropValue("MANUFACTURER", sCertifiedProps[1]);
-        setPropValue("ID", sCertifiedProps[2].isEmpty() ? getBuildID(sCertifiedProps[6]) : sCertifiedProps[2]);
-        setPropValue("DEVICE", sCertifiedProps[3].isEmpty() ? getDeviceName(sCertifiedProps[6]) : sCertifiedProps[3]);
-        setPropValue("PRODUCT", sCertifiedProps[4].isEmpty() ? getDeviceName(sCertifiedProps[6]) : sCertifiedProps[4]);
-        setPropValue("MODEL", sCertifiedProps[5]);
-        setPropValue("FINGERPRINT", sCertifiedProps[6]);
-        setPropValue("TYPE", sCertifiedProps[7].isEmpty() ? "user" : sCertifiedProps[7]);
-        setPropValue("TAGS", sCertifiedProps[8].isEmpty() ? "release-keys" : sCertifiedProps[8]);
+        setPropValue("DEVICE", "foster");
+        setPropValue("FINGERPRINT", "NVIDIA/foster_e/foster:7.0/NRD90M/2427173_1038.2788:user/release-keys");
+        setPropValue("MODEL", "SHIELD Android TV");
+        setPropValue("PRODUCT", "foster_e");
+        setVersionField("DEVICE_INITIAL_SDK_INT", Build.VERSION_CODES.N);
     }
 
     private static boolean isCallerSafetyNet() {
