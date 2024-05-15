@@ -6243,6 +6243,20 @@ public final class Settings {
          */
         public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
 
+       /**
+         * GameSpace: List of added games by user
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_GAME_LIST = "gamespace_game_list";
+
+        /**
+         * GameSpace: Whether fullscreen intent will be suppressed while in game session
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
+
         /**
          * These are all public system settings
          *
@@ -6491,6 +6505,7 @@ public final class Settings {
          */
         @Deprecated
         public static final String BLUETOOTH_ON = Global.BLUETOOTH_ON;
+
 
         /**
          * @deprecated Use {@link android.provider.Settings.Global#DATA_ROAMING} instead
