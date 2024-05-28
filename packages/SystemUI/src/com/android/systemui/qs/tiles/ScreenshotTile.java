@@ -26,7 +26,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.android.internal.util.awaken.AwakenUtils;
+import com.android.internal.util.candy.CandyUtils;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.qs.QSHost;
@@ -73,7 +73,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.AWAKEN;
+        return MetricsEvent.CANDY;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
         //finish collapsing the panel
         mUiHandler.postDelayed(() -> {
-            AwakenUtils.takeScreenshot(mRegion ? false : true);
+            CandyUtils.takeScreenshot(mRegion ? false : true);
         }, 1000/*timeout*/);
     }
 

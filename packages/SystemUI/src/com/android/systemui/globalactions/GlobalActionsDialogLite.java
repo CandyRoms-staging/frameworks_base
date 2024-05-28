@@ -2312,7 +2312,6 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         private KeyguardUpdateMonitor mKeyguardUpdateMonitor;
         private SelectedUserInteractor mSelectedUserInteractor;
         private LockPatternUtils mLockPatternUtils;
-        private BlurUtils mBlurUtils;
         private float mWindowDimAmount;
         private BlurUtils mBlurUtils;
 

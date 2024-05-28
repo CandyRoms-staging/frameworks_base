@@ -6684,9 +6684,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     public void sendCustomAction(Intent intent) {
         String action = intent.getAction();
         if (action != null) {
-            if (AwakenUtils.INTENT_SCREENSHOT.equals(action)) {
+            if (CandyUtils.INTENT_SCREENSHOT.equals(action)) {
                 interceptScreenshotChord(TAKE_SCREENSHOT_FULLSCREEN, SCREENSHOT_KEY_OTHER, 0);
-            } else if (AwakenUtils.INTENT_REGION_SCREENSHOT.equals(action)) {
+            } else if (CandyUtils.INTENT_REGION_SCREENSHOT.equals(action)) {
                 interceptScreenshotChord(TAKE_SCREENSHOT_SELECTED_REGION, SCREENSHOT_KEY_OTHER, 0);
             }
         }
